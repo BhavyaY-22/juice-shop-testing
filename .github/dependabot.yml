@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "package.json"        # location of your package.json
+    schedule:
+      interval: "weekly"  # Dependabot will check every week
