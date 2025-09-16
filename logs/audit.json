@@ -1,0 +1,16 @@
+{
+    "keepSettings": {
+        "type": 1,
+        "amount": 2
+    },
+    "auditFilename": "logs/audit.json",
+    "hashType": "md5",
+    "extension": "",
+    "files": [
+        {
+            "date": 1758058448219,
+            "name": "C:\\Users\\Bhavya\\Downloads\\juice-shop\\juice-shop_19.0.0\\logs\\access.log.2025-09-16",
+            "hash": "854f49ec5f73c2d341186b6eba749e63"
+        }
+    ]
+}
