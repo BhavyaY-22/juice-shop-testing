@@ -51,7 +51,15 @@ function login() {
     }
     return (req, res, next) => {
         verifyPreLoginChallenges(req); // vuln-code-snippet hide-line
-        models.sequelize.query(`SELECT * FROM Users WHERE email = '${req.body.email || ''}' AND password = '${security.hash(req.body.password || '')}' AND deletedAt IS NULL`, { model: user_1.UserModel, plain: true }) // vuln-code-snippet vuln-line loginAdminChallenge loginBenderChallenge loginJimChallenge
+        // models.sequelize.query(`SELECT * FROM Users WHERE email = '${req.body.email || ''}' AND password = '${security.hash(req.body.password || '')}' AND deletedAt IS NULL`, { model: user_1.UserModel, plain: true }) // vuln-code-snippet vuln-line loginAdminChallenge loginBenderChallenge loginJimChallenge
+models.sequelize.query(
+                'SELECT * FROM Users WHERE email = ? AND password = ? AND deletedAt IS NULL',
+                {
+                    replacements: [req.body.email || '', security.hash(req.body.password || '')],
+                    model: user_1.UserModel,
+                    plain: true
+                }
+                ) 
             .then((authenticatedUser) => {
             const user = utils.queryResultToJson(authenticatedUser);
             if (user.data?.id && user.data.totpSecret !== '') {
